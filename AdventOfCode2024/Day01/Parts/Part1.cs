@@ -6,7 +6,7 @@ public static class Part1
 {
     public static int Run()
     {
-        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01\\Data\\lists.txt"));
+        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01\\Data\\Input.txt"));
 
         var totalDifference = 0;
         var listLength = list1.Count;
@@ -16,9 +16,10 @@ public static class Part1
             var list1Min = list1.Min();
             var list2Min = list2.Min();
             var difference = int.Abs(list1Min - list2Min);
+            list1.Remove(list1Min);
+            list2.Remove(list2Min);
+
             totalDifference += difference;
-            list1.Remove(list1.Min());
-            list2.Remove(list2.Min());
         }
 
         return totalDifference;

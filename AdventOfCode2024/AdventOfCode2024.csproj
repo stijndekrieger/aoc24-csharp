@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Day01\Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Day01\Data\lists.txt">
+    <None Update="Day01\Data\Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -6,7 +6,7 @@ public static class Part2
 {
     public static int Run()
     {
-        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01\\Data\\lists.txt"));
+        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01\\Data\\Input.txt"));
 
         var similarityScore = 0;
         var listLength = list1.Count;
