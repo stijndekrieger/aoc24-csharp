@@ -19,12 +19,11 @@ public static class Day02Part2
         return safeReports;
     }
 
-    private static bool CheckReport(List<int> report, bool allowBadIndices = true)
+    private static bool CheckReport(List<int> report, bool allowBadIndicesCheck = true)
     {
         var isValid = true;
-        //var (_, order) = CalculateDifference(report.First(), report.Skip(1).First()); // TODO: don't lock order based on first result
         var orders = new Dictionary<int, Order>();
-        var badIndices = new List<int>();
+        var badIndices = false;
 
         for (var i = 0; i < report.Count - 1; i++)
         {
@@ -35,32 +34,23 @@ public static class Day02Part2
 
             orders.Add(i, deltaOrder);
 
-            if (difference == 0 || difference > 3) isCurrentLevelValid = false;
-            //if (deltaOrder != order) isCurrentLevelValid = false;
-
-            if (!isCurrentLevelValid) badIndices.Add(i);
+            if (difference == 0 || difference > 3) badIndices = true;
         }
 
-        var groupedOrders = orders.GroupBy(x => x.Value);
-        if (groupedOrders.Any(go => go.Count() == 1))
-        {
-            var badGroupedOrder = groupedOrders.Where(go => go.Count() == 1).First();
-            var badIndex = badGroupedOrder.First().Key;
-            if (!badIndices.Contains(badIndex)) badIndices.Add(badIndex);
-        }
+        if (orders.GroupBy(x => x.Value).Count() == 2) badIndices = true;
 
-        if (allowBadIndices)
+        if (allowBadIndicesCheck && badIndices)
         {
-            foreach (var badIndex in badIndices)
+            for (var i = 0; i < report.Count; i++)
             {
-                var alteredReport = report;
-                alteredReport.RemoveAt(badIndex);
+                var alteredReport = new List<int>(report);
+                alteredReport.RemoveAt(i);
                 var succeeded = CheckReport(alteredReport, false);
                 if (succeeded) return true;
             }
         }
 
-        if (badIndices.Count > 0) isValid = false;
+        if (badIndices) isValid = false;
 
         return isValid;
     }
