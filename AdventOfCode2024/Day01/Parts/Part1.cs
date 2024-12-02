@@ -2,11 +2,11 @@
 
 namespace AdventOfCode2024.Day01.Parts;
 
-public static class Part1
+public static class Day01Part1
 {
     public static int Run()
     {
-        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01\\Data\\Input.txt"));
+        (var list1, var list2) = Utils.GetListsFromTextInput(File.ReadAllLines("Day01/Data/Input.txt"));
 
         var totalDifference = 0;
         var listLength = list1.Count;
