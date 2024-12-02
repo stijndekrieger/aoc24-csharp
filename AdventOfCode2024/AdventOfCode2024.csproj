@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <Folder Include="Day02\Data\" />
+    <Folder Include="Day03\Data\" />
   </ItemGroup>
 
 </Project>
