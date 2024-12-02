@@ -16,4 +16,22 @@ public static class Utils
 
         return (list1, list2);
     }
+
+    public static List<List<int>> GetNumberListFromTextInput(string[] input)
+    {
+        List<List<int>> list = [];
+
+        foreach (var line in input)
+        {
+            List<int> numberList = [];
+            var numbers = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in numbers)
+            {
+                numberList.Add(int.Parse(item));
+            }
+            list.Add(numberList);
+        }
+
+        return list;
+    }
 }
