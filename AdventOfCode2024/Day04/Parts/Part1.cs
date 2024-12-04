@@ -1,11 +1,12 @@
-﻿namespace AdventOfCode2024.Day04.Parts;
+﻿using AdventOfCode2024.Utilities;
+
+namespace AdventOfCode2024.Day04.Parts;
 
 public class Day04Part1
 {
     public static int Run()
     {
-        var input = File.ReadAllLines("Day04/Data/Input.txt");
-        var grid = ReadGridFromFile(input);
+        var grid = Utils.GetGridFromTextInput(File.ReadAllLines("Day04/Data/Input.txt"));
 
         int rows = grid.GetLength(0);
         int cols = grid.GetLength(1);
@@ -20,23 +21,6 @@ public class Day04Part1
         }
 
         return xmasCount;
-    }
-
-    private static char[,] ReadGridFromFile(string[] lines)
-    {
-        int rows = lines.Length;
-        int cols = lines[0].Length;
-        char[,] grid = new char[rows, cols];
-
-        for (int row = 0; row < rows; row++)
-        {
-            for (int col = 0; col < cols; col++)
-            {
-                grid[row, col] = lines[row][col];
-            }
-        }
-
-        return grid;
     }
 
     private static readonly (int dx, int dy)[] Directions = {
