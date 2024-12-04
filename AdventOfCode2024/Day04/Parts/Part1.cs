@@ -4,6 +4,9 @@ namespace AdventOfCode2024.Day04.Parts;
 
 public class Day04Part1
 {
+    // Word to search
+    private static readonly string Word = "XMAS";
+
     public static int Run()
     {
         var grid = Utils.GetGridFromTextInput(File.ReadAllLines("Day04/Data/Input.txt"));
@@ -47,17 +50,16 @@ public class Day04Part1
     {
         int rows = grid.GetLength(0);
         int cols = grid.GetLength(1);
-        string xmas = "XMAS";
 
         // Check if the entire word can fit in direction
         if (startRow + dx * 3 < 0 || startRow + dx * 3 >= rows || startCol + dy * 3 < 0 || startCol + dy * 3 >= cols) return false;
 
-        for (int i = 0; i < xmas.Length; i++)
+        for (int i = 0; i < Word.Length; i++)
         {
             int currentRow = startRow + i * dx;
             int currentCol = startCol + i * dy;
 
-            if (grid[currentRow, currentCol] != xmas[i]) return false;
+            if (grid[currentRow, currentCol] != Word[i]) return false;
         }
 
         return true;
