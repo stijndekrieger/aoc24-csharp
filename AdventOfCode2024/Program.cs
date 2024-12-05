@@ -17,5 +17,5 @@ Console.WriteLine("========");
 Console.WriteLine("Day 4 Part 1: " + Day04Part1.Run()); // 2547
 Console.WriteLine("Day 4 Part 2: " + Day04Part2.Run()); // 1939
 Console.WriteLine("========");
-Console.WriteLine("Day 5 Part 1: " + Day05Part1.Run());
+Console.WriteLine("Day 5 Part 1: " + Day05Part1.Run()); // 4281
 Console.WriteLine("Day 5 Part 2: " + Day05Part2.Run());
