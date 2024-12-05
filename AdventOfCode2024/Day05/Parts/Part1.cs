@@ -1,4 +1,4 @@
-﻿using AdventOfCode2024.Day05.Utilities;
+﻿using AdventOfCode2024.Day05.Shared;
 
 namespace AdventOfCode2024.Day05.Parts;
 

@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2024.Day05.Utilities;
+﻿namespace AdventOfCode2024.Day05.Shared;
 
 internal static class Day05Utils
 {
