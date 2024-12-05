@@ -13,6 +13,35 @@ public class Day05Part2
 
         foreach (var page in pagesToProduce) if (!Day05Utils.IsValidPage(page, pageOrderingRules)) incorrectPages.Add(page);
 
-        return 0;
+        var middleNumberCount = 0;
+
+        foreach (var page in incorrectPages) middleNumberCount += Day05Utils.GetMiddleNumber(FixPageOrder(page, pageOrderingRules));
+
+        return middleNumberCount;
+    }
+
+    private static List<int> FixPageOrder(List<int> page, List<(int, int)> pageOrderingRules)
+    {
+        var fixedPage = new List<int>(page);
+
+        var relevantRules = pageOrderingRules
+            .Where(rule => page.Contains(rule.Item1) && page.Contains(rule.Item2))
+            .ToList();
+
+        foreach (var rule in relevantRules)
+        {
+            int index1 = fixedPage.IndexOf(rule.Item1);
+            int index2 = fixedPage.IndexOf(rule.Item2);
+
+            if (index1 > index2)
+            {
+                fixedPage.RemoveAt(index1);
+                fixedPage.Insert(index2, rule.Item1);
+
+                return FixPageOrder(fixedPage, pageOrderingRules);
+            }
+        }
+
+        return fixedPage;
     }
 }
