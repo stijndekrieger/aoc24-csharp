@@ -34,6 +34,7 @@
     <Folder Include="Day04\Data\" />
     <Folder Include="Day05\Data\" />
     <Folder Include="Day06\Data\" />
+    <Folder Include="Day07\Data\" />
   </ItemGroup>
 
 </Project>
