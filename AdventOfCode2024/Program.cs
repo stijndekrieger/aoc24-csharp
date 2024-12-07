@@ -26,5 +26,5 @@ Console.WriteLine("Day 6 Part 1: " + Day06Part1.Run()); // 4819
 Console.WriteLine("Day 6 Part 2: Skipping brute force approach");
 //Console.WriteLine("Day 6 Part 2: " + Day06Part2.Run()); // 1796
 Console.WriteLine("========");
-Console.WriteLine("Day 7 Part 1: " + Day07.Part1());
-Console.WriteLine("Day 7 Part 2: " + Day07.Part2());
+Console.WriteLine("Day 7 Part 1: " + Day07.Part1()); // 303876485655 
+Console.WriteLine("Day 7 Part 2: " + Day07.Part2()); // 146111650210682
