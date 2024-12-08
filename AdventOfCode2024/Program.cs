@@ -31,5 +31,5 @@ Console.WriteLine("Day 7 Part 1: " + Day07.Part1()); // 303876485655
 Console.WriteLine("Day 7 Part 2: (Skip)");
 //Console.WriteLine("Day 7 Part 2: " + Day07.Part2()); // 146111650210682
 Console.WriteLine("========");
-Console.WriteLine("Day 8 Part 1: " + Day08.Part1());
+Console.WriteLine("Day 8 Part 1: " + Day08.Part1()); // 390
 Console.WriteLine("Day 8 Part 2: " + Day08.Part2());
