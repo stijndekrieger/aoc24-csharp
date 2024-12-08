@@ -6,6 +6,7 @@ using AdventOfCode2024.Day05.Parts;
 using AdventOfCode2024.Day06.Parts;
 using AdventOfCode2024.Day07;
 using AdventOfCode2024.Day08;
+using AdventOfCode2024.Day09;
 
 Console.WriteLine("Advent of Code 2024 by Stijn de Krieger");
 Console.WriteLine("Day 1 Part 1: " + Day01Part1.Run()); // 1197984
@@ -33,3 +34,6 @@ Console.WriteLine("Day 7 Part 2: (Skip)");
 Console.WriteLine("========");
 Console.WriteLine("Day 8 Part 1: " + Day08.Part1()); // 390
 Console.WriteLine("Day 8 Part 2: " + Day08.Part2()); // 1246
+Console.WriteLine("========");
+Console.WriteLine("Day 9 Part 1: " + Day09.Part1());
+Console.WriteLine("Day 9 Part 2: " + Day09.Part2());
