@@ -35,5 +35,5 @@ Console.WriteLine("========");
 Console.WriteLine("Day 8 Part 1: " + Day08.Part1()); // 390
 Console.WriteLine("Day 8 Part 2: " + Day08.Part2()); // 1246
 Console.WriteLine("========");
-Console.WriteLine("Day 9 Part 1: " + Day09.Part1());
+Console.WriteLine("Day 9 Part 1: " + Day09.Part1()); // 6154342787400
 Console.WriteLine("Day 9 Part 2: " + Day09.Part2());
