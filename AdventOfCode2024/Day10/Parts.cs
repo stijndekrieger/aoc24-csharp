@@ -18,19 +18,26 @@ public class Day10
 
     public static int Part2()
     {
-        return 0;
+        var trailheadPositions = GetAllTrailheadPositions();
+        var totalTrailheadRating = 0;
+
+        foreach (var trailheadPosition in trailheadPositions) totalTrailheadRating += GetTrailheadRating(trailheadPosition);
+
+        return totalTrailheadRating;
     }
+
+    #region Part 1 specific
 
     public static int GetTrailheadScore((int row, int col) trailheadPosition)
     {
         List<(int, int)> positionsWhereNineWasReached = [];
 
-        TraverseGrid(trailheadPosition.row, trailheadPosition.col, [trailheadPosition], positionsWhereNineWasReached);
+        TraverseGridPart1(trailheadPosition.row, trailheadPosition.col, [trailheadPosition], positionsWhereNineWasReached);
 
         return positionsWhereNineWasReached.Distinct().Count();
     }
 
-    private static void TraverseGrid(int currentRow, int currentCol, List<(int, int)> visitedPositions, List<(int, int)> positionsWhereNineWasReached)
+    private static void TraverseGridPart1(int currentRow, int currentCol, List<(int, int)> visitedPositions, List<(int, int)> positionsWhereNineWasReached)
     {
         var currentNumber = TopograpgyMap[currentRow, currentCol];
         var validNeighbours = GetValidNeighbours(currentRow, currentCol);
@@ -47,10 +54,47 @@ public class Day10
             {
                 var newVisitedPositions = new List<(int, int)>(visitedPositions) { neighbour };
 
-                TraverseGrid(neighbour.row, neighbour.col, newVisitedPositions, positionsWhereNineWasReached);
+                TraverseGridPart1(neighbour.row, neighbour.col, newVisitedPositions, positionsWhereNineWasReached);
             }
         }
     }
+
+    #endregion
+
+    #region Part 2 specific
+
+    public static int GetTrailheadRating((int row, int col) trailheadPosition)
+    {
+        var distinctTrails = new List<string>();
+
+        TraverseGridPart2(trailheadPosition.row, trailheadPosition.col, [trailheadPosition], distinctTrails);
+
+        return distinctTrails.Distinct().Count();
+    }
+
+    private static void TraverseGridPart2(int currentRow, int currentCol, List<(int, int)> visitedPositions, List<string> distinctTrails)
+    {
+        var currentNumber = TopograpgyMap[currentRow, currentCol];
+        var validNeighbours = GetValidNeighbours(currentRow, currentCol);
+
+        if (validNeighbours.Count == 0)
+        {
+            if (currentNumber == '9') distinctTrails.Add(string.Join(" ", visitedPositions));
+            return;
+        }
+
+        foreach ((int row, int col) neighbour in validNeighbours)
+        {
+            if (!visitedPositions.Contains(neighbour))
+            {
+                var newVisitedPositions = new List<(int, int)>(visitedPositions) { neighbour };
+
+                TraverseGridPart2(neighbour.row, neighbour.col, newVisitedPositions, distinctTrails);
+            }
+        }
+    }
+
+    #endregion
 
     private static List<(int, int)> GetValidNeighbours(int currentRow, int currentCol)
     {

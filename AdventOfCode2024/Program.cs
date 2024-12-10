@@ -41,4 +41,4 @@ Console.WriteLine("Day 9 Part 2: (Skip)");
 //Console.WriteLine("Day 9 Part 2: " + Day09.Part2()); // 6183632723350
 Console.WriteLine("========");
 Console.WriteLine("Day 10 Part 1: " + Day10.Part1()); // 796
-Console.WriteLine("Day 10 Part 2: " + Day10.Part2());
+Console.WriteLine("Day 10 Part 2: " + Day10.Part2()); // 1942
