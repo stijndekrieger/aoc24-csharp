@@ -3,7 +3,6 @@
 public class Day11
 {
     private static readonly List<long> Stones = File.ReadAllText("Day11/Data/Input.txt").Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
-    private static readonly int MULTIPLY_NUMBER = 2024;
 
     public static long Part1()
     {
@@ -43,7 +42,7 @@ public class Day11
                 stonesAfterBlink.Add(long.Parse(newStone[..halfLength]));
                 stonesAfterBlink.Add(long.Parse(newStone[halfLength..]));
             }
-            else stonesAfterBlink.Add(stone * MULTIPLY_NUMBER);
+            else stonesAfterBlink.Add(stone * 2024);
         }
 
         return stonesAfterBlink;
