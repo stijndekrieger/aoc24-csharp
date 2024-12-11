@@ -2,49 +2,52 @@
 
 public class Day11
 {
-    private static readonly List<long> Stones = File.ReadAllText("Day11/Data/Input.txt").Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(long.Parse).ToList();
+    private static readonly ulong[] Stones = File.ReadAllText("Day11/Data/Input.txt").Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(s => ulong.Parse(s)).ToArray();
+    private static readonly Dictionary<(ulong, int), ulong> Cache = [];
 
-    public static long Part1()
+    public static ulong Part1()
     {
-        var stones = new List<long>(Stones);
+        Cache.Clear();
+        var stones = new ulong[Stones.Length];
+        Array.Copy(Stones, stones, Stones.Length);
 
-        for (int i = 0; i < 25; i++) stones = Blink(stones);
-
-        return stones.Count;
+        return stones.Aggregate((ulong)0, (acc, s) => acc + Blink(s, 25));
     }
 
-    public static long Part2()
+    public static ulong Part2()
     {
-        var stones = new List<long>(Stones);
+        Cache.Clear();
+        var stones = new ulong[Stones.Length];
+        Array.Copy(Stones, stones, Stones.Length);
 
-        for (int i = 0; i < 75; i++)
-        {
-            stones = Blink(stones);
-            Console.WriteLine($"Currently on blink {i + 1}");
-        }
-
-        return stones.Count;
+        return stones.Aggregate((ulong)0, (acc, s) => acc + Blink(s, 75));
     }
 
-    private static List<long> Blink(List<long> stones)
+    private static ulong Blink(ulong stone, int count)
     {
-        var stonesAfterBlink = new List<long>();
+        var tuple = (stone, count);
 
-        foreach (var stone in stones)
-        {
-            // Check which operation to do
-            if (stone == 0) stonesAfterBlink.Add(1);
-            else if (stone.ToString().Length % 2 == 0)
-            {
-                var newStone = stone.ToString();
-                int halfLength = newStone.Length / 2;
+        if (Cache.TryGetValue(tuple, out var value)) return value;
 
-                stonesAfterBlink.Add(long.Parse(newStone[..halfLength]));
-                stonesAfterBlink.Add(long.Parse(newStone[halfLength..]));
-            }
-            else stonesAfterBlink.Add(stone * 2024);
-        }
+        ulong result;
 
-        return stonesAfterBlink;
+        if (count == 0) result = 1; // Check for end of recursion
+        else if (stone == 0) result = Blink(1, count - 1);
+        else result = TransformStone(stone, count);
+
+        Cache.Add(tuple, result);
+        return result;
+    }
+
+    private static ulong TransformStone(ulong stone, int count)
+    {
+        int numberOfDigits = stone.ToString().Length;
+
+        if (numberOfDigits % 2 != 0) return Blink(stone * 2024, count - 1);
+
+        ulong left = stone / (ulong)Math.Pow(10, numberOfDigits / 2);
+        ulong right = stone % (ulong)Math.Pow(10, numberOfDigits / 2);
+
+        return Blink(left, count - 1) + Blink(right, count - 1);
     }
 }
