@@ -23,15 +23,37 @@ public class Day13
     {
         const int ButtonAPrice = 3;
         const int ButtonBPrice = 1;
-        (int X, int Y) currentPosition = (0, 0);
-        var buttonAPresses = 0;
-        var buttonBPresses = 0;
 
-        // TODO: Calculate least amount of presses to get to machine's prize
-        // Math???????
-        // If (not possible) return 0;
+        int aResult = 0, bResult = 0;
+        int minimalValue = int.MaxValue;
 
-        return (buttonAPresses * ButtonAPrice) + (buttonBPresses * ButtonBPrice);
+        for (int a = 1; a <= 100; a++)
+        {
+            for (int b = 1; b <= 100; b++)
+            {
+                // Check if the values satisfy both equations
+                if (machine.ButtonA.dx * a + machine.ButtonB.dx * b == machine.Prize.X && machine.ButtonA.dy * a + machine.ButtonB.dy * b == machine.Prize.Y)
+                {
+                    // Calculate the expression 3a + b
+                    int currentValue = ButtonAPrice * a + ButtonBPrice * b;
+
+                    // Check if it's the minimal value
+                    if (currentValue < minimalValue)
+                    {
+                        minimalValue = currentValue;
+                    }
+                }
+            }
+        }
+
+        if (minimalValue != int.MaxValue)
+        {
+            return minimalValue;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     private static List<Machine> GetMachinesFromInput()
