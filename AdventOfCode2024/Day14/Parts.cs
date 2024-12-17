@@ -22,9 +22,27 @@ public class Day14
         return CalculateSafetyFactor(robots);
     }
 
-    public static long Part2()
+    public static int Part2()
     {
-        return 0;
+        var robots = GetRobotsFromInput();
+        (int seconds, long lowestSafetyFactor) = (0, long.MaxValue);
+
+        for (var i = 0; i < 10e3; i++)
+        {
+            foreach (var robot in robots)
+            {
+                MoveRobot(robot);
+            }
+
+            var safetyFactor = CalculateSafetyFactor(robots);
+            if (safetyFactor < lowestSafetyFactor)
+            {
+                lowestSafetyFactor = safetyFactor;
+                seconds = i + 1;
+            }
+        }
+
+        return seconds;
     }
 
     private static long CalculateSafetyFactor(List<Robot> robots)

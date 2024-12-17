@@ -57,4 +57,4 @@ Console.WriteLine("Day 13 Part 1: " + Day13.Part1()); // 29436
 Console.WriteLine("Day 13 Part 2: Unsolved");
 Console.WriteLine("========");
 Console.WriteLine("Day 14 Part 1: " + Day14.Part1()); // 226179492
-Console.WriteLine("Day 14 Part 2: " + Day14.Part2());
+Console.WriteLine("Day 14 Part 2: " + Day14.Part2()); // 7502
